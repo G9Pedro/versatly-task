@@ -9,6 +9,7 @@
     "shared"
   ],
   "scripts": {
+    "setup": "npm install && cd backend && npx prisma generate && npx prisma db push && cd ..",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
