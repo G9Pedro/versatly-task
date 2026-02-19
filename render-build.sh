@@ -2,7 +2,7 @@
 set -e
 
 echo "=== Installing dependencies ==="
-npm install
+npm install --include=dev
 
 echo "=== Setting up backend ==="
 cd backend
