@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { invitationService, Invitation } from '../services/invitationService';
-import { useAuthStore } from '../store/authStore';
-
+import { invitationService } from '../services/invitationService';
 export default function AcceptInvitationPage() {
   const { token } = useParams<{ token: string }>();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { user } = useAuthStore();
   const [error, setError] = useState<string | null>(null);
 
   // Fetch invitation details (we'll need to add this to the service)

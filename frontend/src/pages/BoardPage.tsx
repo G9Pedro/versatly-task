@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { useParams, useNavigate, Link, useSearchParams } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -26,8 +26,7 @@ import type { Card } from '../types';
 export default function BoardPage() {
   const { boardId } = useParams<{ boardId: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const { user, token, logout } = useAuthStore();
+  const { token } = useAuthStore();
   const queryClient = useQueryClient();
   const { confirm: confirmAction, ConfirmDialog } = useConfirmModal();
 
@@ -657,21 +656,6 @@ export default function BoardPage() {
 
   const handleArchiveCard = (cardId: string) => {
     archiveCardMutation.mutate(cardId);
-  };
-
-  const convertToMinutes = (value: number, unit: string): number => {
-    switch (unit) {
-      case 'seconds':
-        return value / 60;
-      case 'minutes':
-        return value;
-      case 'hours':
-        return value * 60;
-      case 'days':
-        return value * 1440;
-      default:
-        return value;
-    }
   };
 
   const formatDateToBR = (isoDate: string | null): string => {
@@ -2136,7 +2120,7 @@ export default function BoardPage() {
                 onClick={() => {
                   updateCardMutation.mutate({
                     cardId: cardDateDropdownOpen.id,
-                    updates: { dueDate: null },
+                    updates: { dueDate: undefined },
                   });
                 }}
                 className="flex-1 px-4 py-2 rounded-lg transition-colors"

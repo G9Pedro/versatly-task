@@ -53,6 +53,7 @@ export default function Sidebar() {
     }
   }, [boardId]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const toggleFavorite = (boardIdToToggle: string) => {
     setFavorites(prev =>
       prev.includes(boardIdToToggle)
@@ -60,6 +61,7 @@ export default function Sidebar() {
         : [...prev, boardIdToToggle]
     );
   };
+  void toggleFavorite;
 
   // Fetch workspaces
   const { data: workspacesData } = useQuery({

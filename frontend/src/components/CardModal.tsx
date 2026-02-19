@@ -366,7 +366,7 @@ export default function CardModal({
 
       return { previousBoard };
     },
-    onError: (err, attachmentId, context: any) => {
+    onError: (_err, _attachmentId, context: any) => {
       // Rollback on error
       if (context?.previousBoard) {
         queryClient.setQueryData(['board', boardId], context.previousBoard);
@@ -467,7 +467,7 @@ export default function CardModal({
   };
 
   const toggleMember = (userId: string) => {
-    const isMember = card.members?.some((m) => m.userId === userId);
+    const isMember = card.members?.some((m: any) => m.userId === userId);
     if (isMember) {
       removeMemberMutation.mutate(userId);
     } else {
@@ -596,7 +596,7 @@ export default function CardModal({
 
   // Label handlers
   const handleToggleLabel = (labelId: string) => {
-    const hasLabel = card.labels?.some((cl) => cl.label.id === labelId);
+    const hasLabel = card.labels?.some((cl: any) => cl.label.id === labelId);
     if (hasLabel) {
       removeLabelFromCardMutation.mutate(labelId);
     } else {
@@ -737,7 +737,7 @@ export default function CardModal({
           {/* Labels */}
           {card.labels && card.labels.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-3">
-              {card.labels.map((cl) => (
+              {card.labels.map((cl: any) => (
                 <span
                   key={cl.label.id}
                   className="px-3 py-1 rounded-full text-xs font-semibold text-white"
@@ -769,7 +769,7 @@ export default function CardModal({
                   Membros
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {card.members.map((member) => (
+                  {card.members.map((member: any) => (
                     <div
                       key={member.id}
                       className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1"
@@ -1884,7 +1884,7 @@ export default function CardModal({
                         </p>
                       ) : (
                         availableLabels.map((label) => {
-                          const isSelected = card.labels?.some((cl) => cl.label.id === label.id);
+                          const isSelected = card.labels?.some((cl: any) => cl.label.id === label.id);
                           return (
                             <div key={label.id} className="flex gap-1 group">
                               <button
@@ -2028,7 +2028,7 @@ export default function CardModal({
                 </button>
                 <div className="mt-2 space-y-1 max-h-40 overflow-y-auto">
                   {boardMembers.map((member) => {
-                    const isMember = card.members?.some((m) => m.userId === member.userId);
+                    const isMember = card.members?.some((m: any) => m.userId === member.userId);
                     return (
                       <button
                         key={member.id}
@@ -2337,7 +2337,7 @@ export default function CardModal({
                   <div className="flex gap-2">
                     <button
                       onClick={() => {
-                        updateCardMutation.mutate({ completionTime: null });
+                        updateCardMutation.mutate({ completionTime: undefined });
                         setIsCompletionTimeOpen(false);
                         setCompletionTimeValue('');
                       }}

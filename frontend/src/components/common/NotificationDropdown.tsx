@@ -46,7 +46,7 @@ export default function NotificationDropdown() {
         const { card } = await cardService.getCard(notification.relatedCardId);
 
         // Navegar para o board com o cardId como query param
-        navigate(`/board/${card.list.boardId}?card=${notification.relatedCardId}`);
+        navigate(`/board/${(card as any).list.boardId}?card=${notification.relatedCardId}`);
       } catch (error) {
         console.error('Error navigating to card:', error);
       }

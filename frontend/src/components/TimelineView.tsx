@@ -716,7 +716,7 @@ export default function TimelineView({ board, onCardClick }: TimelineViewProps) 
                     }}
                   >
                     {/* Grid columns in header spacer */}
-                    {visibleDays.map((day, i) => (
+                    {visibleDays.map((_day, i) => (
                       <div
                         key={i}
                         style={{

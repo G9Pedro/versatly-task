@@ -417,18 +417,6 @@ export default function DashboardPage() {
     }
   };
 
-  const handleDeleteWorkspace = async (workspaceId: string) => {
-    const confirmed = await confirmAction({
-      title: 'Deletar workspace',
-      message: 'Tem certeza que deseja deletar este workspace? Todos os boards serao perdidos!',
-      confirmText: 'Deletar',
-      variant: 'danger',
-    });
-    if (confirmed) {
-      deleteWorkspaceMutation.mutate(workspaceId);
-    }
-  };
-
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = 'hidden';

@@ -205,7 +205,7 @@ const ListColumn = memo(
                       <motion.div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        {...provided.dragHandleProps}
+                        {...(() => { const { onDragStart: _, ...rest } = provided.dragHandleProps || {}; return rest; })()}
                         onClick={() => !snapshot.isDragging && onCardClick(card)}
                         onContextMenu={(e) => {
                           e.preventDefault();

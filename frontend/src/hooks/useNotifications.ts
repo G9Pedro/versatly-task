@@ -10,7 +10,7 @@ export function useNotifications() {
   const [notifications, setNotifications] = useState<NotificationData[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [socket, setSocket] = useState<Socket | null>(null);
+  const [_socket, setSocket] = useState<Socket | null>(null);
   const { user, token } = useAuthStore();
 
   // Função para buscar notificações
