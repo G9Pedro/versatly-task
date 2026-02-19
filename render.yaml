@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: versatly-task
+    runtime: node
+    buildCommand: bash render-build.sh
+    startCommand: cd backend && node dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        value: file:./prisma/dev.db
