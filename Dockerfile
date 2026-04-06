@@ -20,4 +20,4 @@ RUN npm run build
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["sh", "-lc", "cd backend && npm run start:prod"]
+CMD ["npm", "--prefix", "backend", "run", "start:prod"]
